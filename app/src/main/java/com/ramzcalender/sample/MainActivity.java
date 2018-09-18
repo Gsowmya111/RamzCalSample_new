@@ -406,5 +406,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
     }
-
+   /* android {
+        useLibrary 'org.apache.http.legacy'
+    }*/
 }
