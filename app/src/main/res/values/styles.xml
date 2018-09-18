@@ -7,5 +7,15 @@
     <item name="colorPrimary">@color/primary</item>
     <item name="colorPrimaryDark">@color/primarydark</item>
     </style>
-
+    <style name="TextLabel" parent="TextAppearance.Design.Hint">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/color_green</item>
+        <item name="android:textColorHint">@color/darker_gray</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:background">@drawable/edittextbg4</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="TabLayoutTextStyle">
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>

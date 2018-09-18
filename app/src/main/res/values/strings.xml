@@ -5,4 +5,48 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="levels_name">
+
+        <item>level 1</item>
+
+        <item>level 2</item>
+
+        <item>level 3</item>
+
+        <item>level 4</item>
+
+        <item>level 5</item>
+    </string-array>
+    <string-array name="levels_name1">
+
+        <item>level 2</item>
+
+        <item>level 3</item>
+
+        <item>level 4</item>
+
+        <item>level 5</item>
+    </string-array>
+    <string-array name="levels_name2">
+
+        <item>level 3</item>
+
+        <item>level 4</item>
+
+        <item>level 5</item>
+    </string-array>
+    <string-array name="levels_name3">
+
+        <item>level 4</item>
+
+        <item>level 5</item>
+    </string-array>
+    <string-array name="levels_name4">
+
+        <item>level 5</item>
+    </string-array>
+
+
 </resources>

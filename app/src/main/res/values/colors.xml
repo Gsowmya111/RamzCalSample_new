@@ -726,6 +726,17 @@
     <color name="md_falcon_A400_25">#40598bae</color>
 
 
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="color_black">#31394c</color>
+    <color name="color_gray">#fafafa</color>
+    <color name="color_green">#4282D0</color>
+    <color name="color_white">#FFFFFF</color>
+
+    <color name="grayy">#fff7f3f3</color>
+    <color name="silver">#C0C0C0</color>
+    <color name="darker_gray">#A9A9A9</color>
 
 
 </resources>

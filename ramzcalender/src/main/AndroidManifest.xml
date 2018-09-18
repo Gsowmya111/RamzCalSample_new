@@ -2,11 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ramzcalender" >
 
-    <application
+   <!-- <application
         android:allowBackup="true"
         android:name=".utils.AppController"
          >
 
-    </application>
+    </application>-->
 
 </manifest>

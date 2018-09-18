@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,7 +63,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
                 cont_nam.add(name);
 
                 Context context = v.getContext();
-                Intent intent = new Intent(context, Calender_task.class);
+                Intent intent = new Intent(context, SingleContact_MainPage.class);
               //  intent.putExtra("text", name);
                 context.startActivity(intent);
 

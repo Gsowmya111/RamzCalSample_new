@@ -1,14 +1,23 @@
 package com.ramzcalender.sample;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomSheetBehavior;
+import android.support.design.widget.BottomSheetDialog;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.datetimepicker.date.DatePickerDialog;
@@ -18,43 +27,50 @@ import com.ramzcalender.utils.CalUtil;
 
 import org.joda.time.DateTime;
 import org.joda.time.LocalDateTime;
-import org.joda.time.MutableDateTime;
-import org.joda.time.ReadWritableDateTime;
-import org.joda.time.Weeks;
 
 import java.util.Calendar;
 
 import static com.ramzcalender.sample.RecyclerAdapter.cont_nam;
 
 
-/**
- * Created by rameshvoltella on 11/10/15.
- */
-
-//## Licence of Date picker using in this sample
-
-/**
- * Copyright 2014 Paul Stöhr
- * Copyright 2013 The Android Open Source Project
- * <p>
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * <p>
- * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
-public class Sample extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+public class Sample extends AppCompatActivity implements DatePickerDialog.OnDateSetListener,View.OnClickListener, AdapterView.OnItemClickListener {
     RWeekCalendar rCalendarFragment;
     TextView mDateSelectedTv;
     FloatingActionButton fb;
     DataBaseHandler db = null;
+    Button task,lead,conta,deal,calendr,cancel,plus;
+    BottomSheetDialog dialog;
+    CoordinatorLayout coordinatorLayout;
+    GridView gd;
+
+
+
+    String[] web = {
+            "Appointment",
+            "Task",
+            "Lead",
+            "Contact",
+            "Deal",
+            "Email",
+            "TextMessage",
+
+
+
+    } ;
+    int[] imageId = {
+            R.drawable.calendar_round,
+            R.drawable.tasks_round,
+            R.drawable.leads_round,
+            R.drawable.contacts_round,
+            R.drawable.deals_round,
+            R.drawable.mail_round,
+            R.drawable.chat_round,
+
+
+    };
+
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,12 +78,6 @@ public class Sample extends AppCompatActivity implements DatePickerDialog.OnDate
 
         db = new DataBaseHandler(Sample.this);
         db.getWritableDatabase();
-        mDateSelectedTv = (TextView) findViewById(R.id.txt_date);
-        fb= (FloatingActionButton) findViewById(R.id.fab);
-
-
-
-
         rCalendarFragment = new RWeekCalendar();
 
         /*Define you startDate and end Date*/
@@ -76,47 +86,37 @@ public class Sample extends AppCompatActivity implements DatePickerDialog.OnDate
 
         Bundle args = new Bundle();
 
+        coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinator);
+
+     //   gd = (GridView) findViewById(R.id.bottom_sheet);
+        task= (Button) findViewById(R.id.taks);
+        plus= (Button) findViewById(R.id.plus_buton);
+        task.setOnClickListener(this);
+        plus.setOnClickListener(this);
+     bottomsheet();
+       /* task.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+            }
+        });
+*/
+
+
+
+
+
+
+
+
+
+
+
        /*Should add this attribute if you adding  the NOW_BACKGROUND or DATE_SELECTOR_BACKGROUND Attribute*/
         args.putString(RWeekCalendar.PACKAGENAME, getApplicationContext().getPackageName());
-
-       /* IMPORTANT: Customization for the calender commenting or un commenting any of the attribute below will reflect change in calender*/
-
-//---------------------------------------------------------------------------------------------------------------------//
-
-
-
-        //set Calender type you want if you don't set any normal calender will be set
-        if (getIntent().getExtras().getInt(RWeekCalendar.CALENDER_TYPE) == RWeekCalendar.FDF_CALENDER) {
-
-            /** Set Calender type to FIRSTDAYFIRST (FDF_CALENDER)here
-             * the week days will start as current day as first entry
-             * eg if current day is friday calender start with fri,sat,etc
-             * */
-            args.putInt(RWeekCalendar.CALENDER_TYPE, RWeekCalendar.FDF_CALENDER);
-        } else {
-
-            /**
-             * set Calender type to normal here the week days will
-             * start as normal  be like Sun,Mon etc
-             * */
-            args.putInt(RWeekCalendar.CALENDER_TYPE, RWeekCalendar.NORMAL_CALENDER);
-        }
-
-
-     // args.putInt(RWeekCalender.CALENDER_BACKGROUND, ContextCompat.getColor(this,R.color.md_pink_700));//set background color to calender
-
-        args.putString(RWeekCalendar.DATE_SELECTOR_BACKGROUND, "bg_select");//set background to the selected dates
-
-     //   args.putString(RWeekCalender.NOW_BACKGROUND,"bg_now");//set background to nowView
-
-//        args.putInt(RWeekCalender.CURRENT_DATE_BACKGROUND,ContextCompat.getColor(this,R.color.md_black_1000));//set color to the currentdate
-
-//        args.putInt(RWeekCalender.PRIMARY_BACKGROUND, ContextCompat.getColor(this,R.color.md_white_1000));//Set color to the primary views (Month name and dates)
-
-//        args.putInt(RWeekCalender.SECONDARY_BACKGROUND, ContextCompat.getColor(this,R.color.md_green_500));//Set color to the secondary views (now view and week names)
-
-//---------------------------------------------------------------------------------------------------------------------//
-
+    args.putInt(RWeekCalendar.CALENDER_TYPE, RWeekCalendar.NORMAL_CALENDER);
+       args.putString(RWeekCalendar.DATE_SELECTOR_BACKGROUND, "bg_select");//set background to the selected dates
 
         rCalendarFragment.setArguments(args);
 
@@ -141,23 +141,12 @@ public class Sample extends AppCompatActivity implements DatePickerDialog.OnDate
 
                 //callback when a date is selcted
 
-                mDateSelectedTv.setText("" + mSelectedDate.getDayOfMonth() + "-" + mSelectedDate.getMonthOfYear() + "-" + mSelectedDate.getYear());
+              //  mDateSelectedTv.setText("" + mSelectedDate.getDayOfMonth() + "-" + mSelectedDate.getMonthOfYear() + "-" + mSelectedDate.getYear());
             }
         };
 
         //setting the listener
         rCalendarFragment.setCalenderListener(listener);
-
-       fb.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               cont_nam.clear();
-               Intent i = new Intent(Sample.this,Calender_task.class);
-               startActivity(i);
-           }
-       });
-
-
 
     }
 
@@ -176,4 +165,84 @@ public class Sample extends AppCompatActivity implements DatePickerDialog.OnDate
     }
 
 
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == task.getId()) {
+
+           // dialog.show();
+        } else if (v.getId() == plus.getId()) {
+            dialog.show();
+        }
+    }
+
+
+    public void bottomsheet() {
+        View modalbottomsheet = getLayoutInflater().inflate(R.layout.bottom_grid, null);
+        gd = (GridView) modalbottomsheet.findViewById(R.id.bottom_sheet);
+        Custom_Grid adapter = new Custom_Grid(Sample.this, web, imageId);
+
+        gd.setAdapter(adapter);
+        dialog = new BottomSheetDialog(this);
+        dialog.setContentView(modalbottomsheet);
+        dialog.setCanceledOnTouchOutside(true);
+        dialog.setCancelable(true);
+
+
+//        dialog.show();
+     //   cancel = (Button) modalbottomsheet.findViewById(R.id.cancel);
+        gd.setOnItemClickListener(this);
+
+    }
+
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+       //  if (view.getId() == gd.getId()) {
+             if(position == 0) {
+                 Intent inte = new Intent(Sample.this, Add_appointment.class);
+                 startActivity(inte);
+                 finish();
+             }else if(position ==1){
+                 Intent inte = new Intent(Sample.this, Task_class.class);
+                 startActivity(inte);
+                 finish();
+             }
+             else if(position ==2){
+                 Intent inte = new Intent(Sample.this, Lead_class.class);
+                 startActivity(inte);
+                 finish();
+             }
+             else if(position ==3){
+                 Intent inte = new Intent(Sample.this, Contacts_page.class);
+                 startActivity(inte);
+                 finish();
+             }
+             else if(position ==4){
+
+                 Intent inte = new Intent(Sample.this, Deals_page.class);
+                 startActivity(inte);
+                 finish();
+
+             }
+             else if(position ==5){
+                 Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                         "mailto","", null));
+                 //   intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+                 // intent.putExtra(Intent.EXTRA_TEXT, message);
+                 startActivity(Intent.createChooser(intent, "Choose an Email client :"));
+             }
+             else if(position ==6){
+                 Intent intent = new Intent("android.intent.action.VIEW");
+
+                 /** creates an sms uri */
+                 Uri data = Uri.parse("sms:");
+
+                 /** Setting sms uri to the intent */
+                 intent.setData(data);
+
+                 /** Initiates the SMS compose screen, because the activity contain ACTION_VIEW and sms uri */
+                 startActivity(intent);
+             }
+       // }
+    }
 }

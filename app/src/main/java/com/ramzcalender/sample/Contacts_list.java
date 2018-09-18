@@ -52,15 +52,11 @@ public class Contacts_list extends AppCompatActivity {
 
     private void showContacts() {
         // Check the SDK version and whether the permission is already granted or not.
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(new String[]{Manifest.permission.READ_CONTACTS}, PERMISSIONS_REQUEST_READ_CONTACTS);
-            //After this point you wait for callback in onRequestPermissionsResult(int, String[], int[]) overriden method
-        } else {
-            // Android version is lesser than 6.0 or the permission is already granted.
+           // Android version is lesser than 6.0 or the permission is already granted.
             phones = getApplicationContext().getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, null, null, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " ASC");
             LoadContact loadContact = new LoadContact();
             loadContact.execute();
-        }
+
     }
 
     @Override
@@ -96,7 +92,6 @@ public class Contacts_list extends AppCompatActivity {
                     String id = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.CONTACT_ID));
                     String name = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
                     String phoneNumber = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-
                     Contacts selectUser = new Contacts();
                     selectUser.setName(name);
                     selectUser.setPhone(phoneNumber);
@@ -127,11 +122,13 @@ public class Contacts_list extends AppCompatActivity {
                     contacts.add(inviteFriendsProjo);
                 }
             }
+
             contacts.addAll(removed);
             selectUsers=contacts;
             adapter = new RecyclerAdapter(inflater, selectUsers);
             recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
             recyclerView.setAdapter(adapter);
+
         }
     }
 

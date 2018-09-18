@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="single_img_height">40sp</dimen>
+
+
+    <dimen name="campaign_textfontsize">16sp</dimen>
+    <dimen name="campaign2">18sp</dimen>
+    <dimen name="buton_size">18sp</dimen>
+    <dimen name="heading">21sp</dimen>
+    <dimen name="savelogin">38sp</dimen>
+    <dimen name="url">15sp</dimen>
+
+    <dimen name="scroll_height">680dp</dimen>
+    <dimen name="scroll_width">320dp</dimen>
+
+</resources>

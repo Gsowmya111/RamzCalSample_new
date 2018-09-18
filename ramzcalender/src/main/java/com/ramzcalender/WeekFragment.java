@@ -282,16 +282,6 @@ public class WeekFragment extends Fragment {
 
     }
 
-
-
-    /**
-     * Set Values including customizable info
-     *
-     * @param position
-     * @param selectorDateIndicatorValue
-     * @param currentDateIndicatorValue
-     * @param primaryTextColor
-     */
     public static WeekFragment newInstance(int position,String selectorDateIndicatorValue,int currentDateIndicatorValue,int primaryTextColor) {
 
         WeekFragment f = new WeekFragment();
@@ -306,10 +296,6 @@ public class WeekFragment extends Fragment {
         return f;
     }
 
-    /**Passing the selected date info
-     *
-     * @param position
-     */
     public void mSelectedDateInfo(int position)
     {
         RWeekCalendar.getInstance().getSelectedDate(dateInWeekArray.get(position),false);
@@ -321,10 +307,6 @@ public class WeekFragment extends Fragment {
 
     }
 
-    /**Changing backgrounds of unselected views
-     *
-     * @param position
-     */
     public void mDateSelectedBackground(int position)
     {
         for(int i=0;i<textViewArray.length;i++)
@@ -406,13 +388,6 @@ public class WeekFragment extends Fragment {
 
 
     }
-
-
-    /**
-     * Setting date when selected form picker
-     *
-     * @param mSelectedDate
-     */
 
     public void ChangeSelector(LocalDateTime mSelectedDate) {
 

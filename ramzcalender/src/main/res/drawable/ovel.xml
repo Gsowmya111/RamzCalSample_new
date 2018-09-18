@@ -7,7 +7,7 @@
         <shape>
             <solid
                 android:angle="270.0"
-                android:color="#3D689A" />
+                android:color="#039be5" />
 
             <corners android:topLeftRadius="8dp" />
         </shape>
@@ -18,7 +18,7 @@
         android:bottom="30dp"
         android:left="50dp">
         <shape>
-            <solid android:color="#5C83AF" />
+            <solid android:color="#80d8ff" />
         </shape>
     </item>
     <!-- my third item is on bottom left for a fake corner radius(0dp)
@@ -27,7 +27,7 @@
         android:right="50dp"
         android:top="30dp">
         <shape>
-            <solid android:color="#5C83AF" />
+            <solid android:color="#80d8ff" />
         </shape>
     </item>
 

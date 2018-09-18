@@ -12,20 +12,20 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="fill_parent"
-        android:layout_weight="0.1"
+        android:layout_weight="0.15"
         android:layout_marginLeft="10dp"
         android:orientation="vertical">
-        <TextView
+        <Space
             android:layout_width="fill_parent"
             android:layout_height="0dp"
             android:layout_weight="0.2"/>
 
         <ImageView
-            android:layout_width="fill_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:layout_weight="0.8"
             android:background="@drawable/accont"/>
-        <TextView
+        <Space
             android:layout_width="fill_parent"
             android:layout_height="0dp"
             android:layout_weight="0.2"/>
@@ -43,7 +43,7 @@
             android:text="Name"
             android:layout_weight="1"
             android:textColor="#6C6C6C"
-            android:textSize="20dp" />
+            android:textSize="15dp" />
         <TextView
             android:id="@+id/no"
             android:layout_width="fill_parent"
@@ -51,8 +51,9 @@
             android:layout_weight="1"
             android:layout_marginTop="10dp"
             android:text="Phone no."
+
             android:textColor="#cecece"
-            android:textSize="18dp" />
+            android:textSize="15dp" />
     </LinearLayout>
 </LinearLayout>
  
